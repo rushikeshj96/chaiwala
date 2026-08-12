@@ -1,0 +1,334 @@
+@import "tailwindcss";
+@source "..";
+
+
+/* ─── CSS Custom Properties ─────────────────────────────────────── */
+:root {
+  --chai-dark: #140c07;
+  --chai-bg: #1e1007;
+  --chai-brown: #5c3a1e;
+  --chai-medium: #8b5e3c;
+  --chai-warm: #d4882a;
+  --chai-honey: #c9a84c;
+  --chai-terracotta: #c4622d;
+  --chai-cream: #f5e6d0;
+  --chai-offwhite: #f0dfc8;
+  --chai-green: #2d5016;
+  --chai-steam: rgba(255, 248, 240, 0.55);
+  --font-devanagari: 'Noto Sans Devanagari', 'Tiro Devanagari Hindi', serif;
+  --font-body: 'Hind', 'Inter', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+}
+
+/* ─── Reset & Base ──────────────────────────────────────────────── */
+/* Relying on Tailwind's default Preflight instead of manual reset */
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--chai-dark);
+  color: var(--chai-cream);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Noise Texture Overlay ─────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chai-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chai-brown);
+  border-radius: 2px;
+}
+
+/* ─── Focus Visible ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--chai-warm);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Steam Animation ────────────────────────────────────────────── */
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+  }
+
+  20% {
+    opacity: 0.6;
+  }
+
+  80% {
+    opacity: 0.3;
+    transform: translateY(-60px) scaleX(1.4);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scaleX(0.8);
+  }
+}
+
+@keyframes steam-drift {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.5;
+  }
+
+  85% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateX(20px) translateY(-90px) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bulb-flicker {
+
+  0%,
+  90%,
+  100% {
+    opacity: 1;
+  }
+
+  91% {
+    opacity: 0.85;
+  }
+
+  93% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0.9;
+  }
+
+  97% {
+    opacity: 1;
+  }
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  80% {
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: translateY(-120px) translateX(var(--drift, 20px));
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(134, 239, 172, 0);
+  }
+}
+
+@keyframes count-flash {
+
+  0%,
+  100% {
+    color: var(--chai-cream);
+  }
+
+  50% {
+    color: var(--chai-warm);
+  }
+}
+
+@keyframes chai-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes subtitle-entrance {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+
+  100% {
+    opacity: 1;
+    letter-spacing: 0.25em;
+  }
+}
+
+@keyframes timer-done-bounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.08);
+  }
+
+  60% {
+    transform: scale(0.96);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ─── Utility Classes ───────────────────────────────────────────── */
+.font-devanagari {
+  font-family: var(--font-devanagari);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-ui {
+  font-family: var(--font-ui);
+}
+
+.steam-waft {
+  animation: steam-drift var(--dur, 3s) ease-out var(--delay, 0s) infinite;
+}
+
+.bulb-flicker {
+  animation: bulb-flicker 8s ease-in-out infinite;
+}
+
+.particle {
+  animation: float-particle var(--pdur, 6s) ease-out var(--pdelay, 0s) infinite;
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.chai-title {
+  animation: chai-entrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chai-subtitle {
+  animation: subtitle-entrance 1.5s ease-out 0.4s both;
+}
+
+/* ─── Glass Panel ───────────────────────────────────────────────── */
+.glass-panel {
+  background: rgba(20, 10, 4, 0.72);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(212, 136, 42, 0.15);
+}
+
+/* ─── Chai Button ──────────────────────────────────────────────── */
+.chai-btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.chai-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 20px rgba(212, 136, 42, 0.3);
+}
+
+.chai-btn:active {
+  transform: scale(0.97);
+}
+
+/* ─── Seek Bar ──────────────────────────────────────────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(245, 230, 208, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--chai-warm);
+  margin-top: -4.5px;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+
+/* ─── Reduced Motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
