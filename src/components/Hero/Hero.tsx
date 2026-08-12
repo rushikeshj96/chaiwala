@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { VisitorCounter } from '../VisitorCounter/VisitorCounter';
 import { QuoteCard } from '../QuoteCard/QuoteCard';
-import { LikeButton } from '../LikeButton/LikeButton';
 import { ChaiButton } from '../ChaiButton/ChaiButton';
 import { useClock } from '../../hooks/useClock';
 import { SITE_CONFIG } from '../../config/site';
@@ -73,7 +72,6 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.1 }}
         >
           <QuoteCard />
-          {/* <LikeButton /> */}
         </motion.div>
       </div>
 
