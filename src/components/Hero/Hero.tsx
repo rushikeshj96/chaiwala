@@ -73,7 +73,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.1 }}
         >
           <QuoteCard />
-          <LikeButton />
+          {/* <LikeButton /> */}
         </motion.div>
       </div>
 
