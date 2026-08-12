@@ -12,11 +12,19 @@ export function Footer() {
           चाय वाला
         </p>
         <p
-          className="font-ui text-xs tracking-widest uppercase opacity-40 mb-8"
+          className="font-ui text-xs tracking-widest uppercase opacity-40 mb-4"
           style={{ color: 'var(--chai-cream)' }}
         >
           A digital chai stall
         </p>
+
+        <a 
+          href="mailto:rhushikeshjadhav96@gmail.com"
+          className="inline-block font-ui text-sm mb-8 transition-opacity hover:opacity-80"
+          style={{ color: 'var(--chai-warm)' }}
+        >
+          rhushikeshjadhav96@gmail.com
+        </a>
 
         <div className="h-px w-24 mx-auto mb-8" style={{ background: 'rgba(212,136,42,0.25)' }} />
 

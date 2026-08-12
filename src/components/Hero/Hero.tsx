@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { VisitorCounter } from '../VisitorCounter/VisitorCounter';
 import { QuoteCard } from '../QuoteCard/QuoteCard';
+import { LikeButton } from '../LikeButton/LikeButton';
 import { ChaiButton } from '../ChaiButton/ChaiButton';
 import { useClock } from '../../hooks/useClock';
 import { SITE_CONFIG } from '../../config/site';
@@ -40,13 +41,13 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Main title block — perfectly centered ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center justify-center w-full px-5 md:px-10 text-center">
+      {/* ── Main content block — perfectly centered ── */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center w-full px-5 md:px-10 text-center">
         {/* Big Hindi heading */}
         <motion.h1
-          className="font-devanagari font-black leading-none select-none max-w-full"
+          className="font-devanagari font-bold leading-none select-none max-w-full"
           style={{
-            fontSize: 'clamp(2.5rem, 10vw, 12rem)',
+            fontSize: 'clamp(4rem, 14vw, 12rem)',
             color: 'var(--chai-cream)',
             textShadow: `
               0 2px 0 rgba(0,0,0,0.4),
@@ -64,34 +65,17 @@ export function Hero() {
           {SITE_CONFIG.hindiName}
         </motion.h1>
 
-        {/* English subtitle */}
-        {/* <motion.p
-          className="font-ui font-light mt-3 md:mt-4"
-          style={{
-            fontSize: 'clamp(0.6rem, 1.4vw, 0.85rem)',
-            color: 'var(--chai-warm)',
-            opacity: 0.75,
-            letterSpacing: '0.28em',
-          }}
-          initial={{ opacity: 0, letterSpacing: '0.5em' }}
-          animate={{ opacity: 0.75, letterSpacing: '0.28em' }}
-          transition={{ duration: 1.4, delay: 0.35, ease: 'easeOut' }}
-          aria-label="Chai Wala — a digital roadside tea stall"
+        {/* ── Centre-bottom: quote ── */}
+        <motion.div
+          className="w-full max-w-lg px-6 md:px-8 text-center mt-6 md:mt-12 lg:mt-16 flex flex-col items-center gap-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.1 }}
         >
-          {SITE_CONFIG.latinSubtitle} — A DIGITAL ROADSIDE TEA STALL
-        </motion.p> */}
+          <QuoteCard />
+          <LikeButton />
+        </motion.div>
       </div>
-
-      {/* ── Centre-bottom: quote ── */}
-      <motion.div
-        className="absolute left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-8 text-center"
-        style={{ bottom: 'clamp(140px, 40vh, 200px)' }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.1 }}
-      >
-        <QuoteCard />
-      </motion.div>
 
       {/* ── Bottom-left: Chai Timer ── */}
       {/* <motion.div

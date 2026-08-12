@@ -5,7 +5,7 @@ export function ChaiStory() {
   return (
     <section
       id="chai-story"
-      className="relative py-20 md:py-32 px-4 border-t border-white/5"
+      className="relative py-16 md:py-32 px-4 border-t border-white/5"
       style={{
         background: 'linear-gradient(to bottom, rgba(20, 10, 4, 0.8) 0%, rgba(14, 7, 2, 0.95) 100%)',
         backdropFilter: 'blur(20px)',
@@ -17,7 +17,7 @@ export function ChaiStory() {
       <div className="max-w-4xl mx-auto">
         {/* Section heading */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -42,7 +42,7 @@ export function ChaiStory() {
         </motion.div>
 
         {/* Story grid */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left: Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -51,7 +51,7 @@ export function ChaiStory() {
             transition={{ duration: 0.9, delay: 0.1 }}
           >
             <div
-              className="glass-panel rounded-2xl p-8"
+              className="glass-panel rounded-2xl p-6 md:p-8"
               style={{ borderColor: 'rgba(212,136,42,0.15)' }}
             >
               <p
